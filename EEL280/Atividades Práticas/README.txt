@@ -1,0 +1,1 @@
+Circuitos da disciplina "Circuitos lógicos EEL280" projetados no programa "Logisim Evolution".

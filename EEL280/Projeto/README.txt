@@ -1,0 +1,1 @@
+Trabalho final da disciplina Circuitos Lógicos realizado no Logisim Evolution, em que consiste em uma implementação do "JOGO 21" utilizando todos os conhecimentos aprendidos no decorrer do curso. 
