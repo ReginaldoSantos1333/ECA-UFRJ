@@ -1,0 +1,72 @@
+from UPday import *
+def upday(rotinas):
+    while True:
+
+        if rotinas(tarefa['p']) == 'Manhã':
+            if rotinas(tarefa['d']) == 'Fácil':
+                atividades_manhaf = []
+                atividades_manhaf.append(tarefa)
+            else:
+                atividades_manhad = []
+                atividades_manhad.append(tarefa)
+        
+        elif rotinas(tarefa['p']) == 'Tarde':
+            if rotinas(tarefa['d']) == 'Fácil':
+                atividades_tardef = []
+                atividades_tardef.append(tarefa)
+            else:
+                atividades_tarded = []
+                atividades_tarded.append(tarefa)
+        
+        else:
+            if rotinas(tarefa['d']) == 'Fácil':
+                atividades_noitef = []
+                atividades_noitef.append(tarefa)
+            else:
+                atividades_noited = []
+                atividades_noited.append(tarefa)
+        
+
+
+        print("Hora do *UPday!*\n", "Como deseja que sua rotina seja criada?")
+        print(" 1 - Surpreenda-me!")
+        print(" 2 - Deixa eu dar uma olhadinha...")
+        escolha = int(input("> "))
+
+        print("Certo, agora sobre o *nível* da rotina.")
+        print(" 3 - Pega leve!")
+        print(" 4 - Vem monxtroooooo!")
+        dificuldade = int(input("> "))
+
+        if escolha == 1 and dificuldade == 3:
+            print("Acordar - 06:20h")
+            print("Banho - 06:40h")
+            print("Café da Manhã - 07h")
+            print(random) #Tarefa aleatória
+            print("Aula - 08h-10h")
+            print("Aula - 10h-12h")
+            print("Almoço - 12h")
+            print("Aula - 13h-15h")
+            print("Descanso - 15h-15:30h")
+            #Tarefa Aleatória
+            #Tarefa Aleatória
+            print("Jantar - 18h")
+            #Tarefa Aleatória
+            #Tarefa Aleatória
+            print("Hora de Dormir - 22h")
+
+            print()
+
+        elif escolha == 1 and dificuldade == 4:
+            pass
+
+        elif escolha == 2 and dificuldade == 3:
+            pass
+
+        elif escolha == 2 and dificuldade == 4:
+            pass
+
+        else:
+            print("Eu tenho certeza que não existe essa opção...")
+
+    

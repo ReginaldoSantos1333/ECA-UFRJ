@@ -1,0 +1,215 @@
+from fUpday import upday
+def existe_rotina(rotinas, id):
+    if len(rotinas)>0:
+        for tarefa in rotinas:
+            if tarefa['id'] == id:
+                return True
+        return False
+    return False
+
+
+def salvar_rotinas(rotinas):
+    arquivo = open("LP/roteiro.txt","w")
+
+    for tarefa in rotinas:
+        arquivo.write("{}\n{}#{}#{}\n".format(tarefa['nr'], tarefa['p'], tarefa['d'], tarefa['id']))
+
+    arquivo.close() 
+
+
+def carregar_rotinas():
+    rotinas=[]
+
+    try:
+        arquivo = open("LP/roteiro.txt","r")
+
+        for linha in arquivo.readlines():
+            coluna = linha.split("#")
+
+            tarefa = {
+                "nr": coluna[0],
+                "p": coluna[1],
+                "d": coluna[2],
+            }
+            rotinas.append(tarefa)
+        arquivo.close()
+    except FileNotFoundError:
+        pass
+
+    return rotinas
+
+
+
+def inserir(rotinas):
+    
+    while True:
+        id = input("Insira o código exclusivo dessa rotina: ")
+        
+        if not existe_rotina(rotinas, id):
+            break
+        else:
+            print("Esse código já está sendo utilizado.")
+            print("Por favor, tente um novo e-mail.")
+            
+
+    tarefa = {
+        "nr": input("Escreva uma nova tarefa para sua rotina\n"),
+        "p": input("Para qual período do dia (Manhã/Tarde/Noite) você gostaria de fazer essa tarefa?\n"),
+        "d": input("Como você classifica essa atividade (Fácil/Difícil)?\n"),
+        "id": id
+    }
+
+    rotinas.append(tarefa)
+    print("UP-UP! A tarefa foi cadastrada com sucesso!\n")
+
+def editar(rotinas):
+    print(" == Vamos mudar algumas coisas ==")
+    if len(rotinas) > 0:
+        id = input("Insira o id da tarefa a ser alterada: ")
+        if existe_rotina(rotinas, id):
+            print("O id foi encontrado. Seguem abaixo as informações da tarefa: ")
+            for tarefa in rotinas:
+                if tarefa['id'] == id:
+                    print("\tTarefa: {}:".format(tarefa['nr']))
+                    print("\tPeríodo: {}:".format(tarefa['p']))
+                    print("\tDificuldade: {}:".format(tarefa['d']))
+                    print("\tIdentificação: {}:".format(tarefa['id']))
+                    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
+
+                    rotinas['nr'] = input("Insira a nova rotina: ")
+                    rotinas['p'] = input("Insira o novo período: ")
+                    rotinas['d'] = input("Insira a dificuldade: ")
+
+                    print("UP-UP! Os dados foram alterados com sucesso!")
+                    break
+        else:
+            print("Não existe tarefa cadastrada no sistema com esse id\n")
+    else:
+        print("Não existe nenhuma tarefa cadastrada no roteiro.\n")             
+
+                    
+
+
+
+def buscar(rotinas):
+    print(" == Onde estão aquelas Tarefas?! == ")
+    if len(rotinas) > 0:
+        id = input("Digite o Id da tarefa a ser encontrada: ")
+        if existe_rotina(rotinas, id):
+            print("A tarefa foi localizada. As informações sobre tal são: ")
+            for tarefa in rotinas:
+                if tarefa['id'] == id:
+                    print("\tTarefa: {}:".format(tarefa['nr']))
+                    print("\tPeríodo: {}:".format(tarefa['p']))
+                    print("\tDificuldade: {}:".format(tarefa['d']))
+                    print("\tIdentificação: {}:".format(tarefa['id']))
+                    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
+                    break
+        else:
+            print("Não existe tarefa cadastrada no sistema com esse id.\n")
+    else:
+        print("Não existe nenhuma tarefa cadastrada no roteiro.\n")             
+
+
+
+def visualizar(rotinas):
+    print(" == Estoque de Tarefas == ")
+    if len(rotinas) > 0:
+        for i, tarefa in enumerate(rotinas):
+            print("Tarefa Nº{}:".format(i+1))
+            print("\tTarefa: {}:".format(tarefa['nr']))
+            print("\tPeríodo: {}:".format(tarefa['p']))
+            print("\tDificuldade: {}:".format(tarefa['d']))
+            print("\tIdentificação: {}:".format(tarefa['id']))
+            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+
+        print("Quantidade de Tarefas Registradas: {}\n".format(len(rotinas)))
+    else:
+        print("Não foi encontrado nenhuma rotina no nosso sistema :(\n")
+
+    
+
+def apagar(rotinas):
+    print("Ficou monótono? :/")
+    if len(rotinas) > 0:
+        id = input("Digite a numeração da tarefa a ser deletada: ")
+        if existe_rotina(rotinas, id):
+            print("Tarefa encontrada! As informações da mesma se apresentam abaixo: ")
+            for i, tarefa in enumerate(rotinas):
+                if tarefa['id'] == id:
+                    print("Tarefa Nº{}:".format(i+1))
+                    print("\tTarefa: {}:".format(tarefa['nr']))
+                    print("\tPeríodo: {}:".format(tarefa['p']))
+                    print("\tDificuldade: {}:".format(tarefa['d']))
+                    print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+
+                    del rotinas[i]
+                    print("UP-UP! A rotina foi deletada com sucesso!")
+                    break
+        else:
+            print("Não existe nenhuma tarefa com essa numeração\n")
+    else:
+        print("Me parece que você ainda não adicionou nenhuma tarefa ainda... só acho...\n")
+
+
+
+
+
+
+#from fUpday import *
+#As funções estão reunidas em outro código para organização
+
+
+#Aqui é a base central do funcionamento do aplicativo
+def principal():
+    
+    #Dicionário
+    rotinas = carregar_rotinas()
+
+    print("\tOlá! Bem vindo(a) à UPday!")
+    print("Juntos podemos dar um 'Up' no seu dia ;)")
+    print("Primeiramente, seria ótimo te conhecer mais um pouco.\n","\tVamos começar?!")
+    print("=====================================================\n")
+
+    nome = input("Seu nome é... ")
+
+    print("Ficamos muito felizes em te conhecer {}!\n".format(nome))
+    print("Agora, vamos começar a dar o 'UP' que sua rotina precisa :)\n")
+
+    print("{}, aqui está o menu do seu gerador de rotina pessoal,\n".format(nome))
+    print("Experimente!\n")
+
+
+    while True:
+        print(" === UPday na sua Rotina === ")
+        print(" 1 - Inserir Nova Rotina")
+        print(" 2 - Editar Rotinas Existentes")
+        print(" 3 - Buscar Rotinas Existentes")
+        print(" 4 - Visualizar Rotinas Existentes")
+        print(" 5 - UPday Rotina")
+        print(" 6 - Apagar Rotina")
+        print(" 7 - Encerrar Sessão")
+        opção = int(input("> "))
+            
+        if opção == 1:
+            inserir(rotinas)
+            salvar_rotinas(rotinas)
+        elif opção == 2:
+            editar(rotinas)
+            salvar_rotinas(rotinas)
+        elif opção == 3:
+            buscar(rotinas)
+        elif opção == 4:
+            visualizar(rotinas)
+        elif opção == 5:
+            upday(rotinas)
+        elif opção == 6:
+            apagar(rotinas)
+            salvar_rotinas(rotinas)
+        elif opção == 7:
+            print("Lembre-se, sempre há tempo para dar um 'UP' na sua vida!\n","Até logo ;)")
+            break
+        else:
+            print("Hm.. me parece que essa opção é inválida...\n", "Tente novamente!")
+
+principal()
