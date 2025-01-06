@@ -9,4 +9,5 @@ Repository for storing projects and reports from completed courses.
 | [EEL280](https://github.com/ReginaldoSantos1333/ECA-UFRJ/tree/main/EEL280) | Logic Circuits | 2021.2 |
 | [EEL871](https://github.com/ReginaldoSantos1333/ECA-UFRJ/tree/main/EEL871) | Database | 2022.1 |
 | [EEL874](https://github.com/ReginaldoSantos1333/ECA-UFRJ/tree/main/EEL874) | Artificial Intelligence | 2022.2 |
+| [EEL480](https://github.com/ReginaldoSantos1333/ECA-UFRJ/tree/main/EEL480) | Digital Systems | 2024.1 |
 
